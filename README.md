@@ -135,17 +135,34 @@ int main() {
 ## RESULT:
 Thus, the program has been executed successfully using CUDA to perform parallel Sobel edge detection on an image using GPU acceleration.
 
-Questions:
+1. What challenges did you face while implementing the Sobel filter for color images?
+The main challenges were converting the color image to grayscale, handling image boundaries, and ensuring that each CUDA thread accesses the correct neighboring pixels without going out of bounds.
 
-What challenges did you face while implementing the Sobel filter for color images?
-How did changing the block size influence the performance of your CUDA implementation?
-What were the differences in output between the CUDA and CPU implementations? Discuss any discrepancies.
-Suggest potential optimizations for improving the performance of the Sobel filter.
+2. How did changing the block size influence the performance of your CUDA implementation?
+Changing the block size affected the number of threads executed together. A suitable block size such as 16×16 provided efficient GPU utilization, while very small or large block sizes could result in lower performance due to inefficient thread utilization.
 
-Deliverables:
+3. What were the differences in output between the CUDA and CPU implementations? Discuss any discrepancies.
+Both implementations produced similar edge-detected images. Minor differences may occur due to differences in numerical calculations, boundary handling, and implementation details. The CUDA implementation provides the advantage of parallel GPU processing.
 
-Modified CUDA code with comments explaining your changes.
-A report summarizing your findings, including graphs of execution times and a comparison of outputs.
-Answers to the questions posed in the experiment.
-Tools Required:
+4. Suggest potential optimizations for improving the performance of the Sobel filter.
+
+Use shared memory to reduce repeated global-memory accesses.
+Experiment with different block sizes such as 8×8, 16×16, and 32×32.
+Minimize unnecessary memory transfers between CPU and GPU.
+Use optimized CUDA memory-access patterns for coalesced memory access.
+Process multiple images or larger images in parallel where applicable.
+
+## DELIVERABLES
+Modified CUDA Sobel filter code with comments.
+Execution-time analysis for different image and block sizes.
+Comparison of CUDA and CPU Sobel outputs.
+
+## TOOLS REQUIRED
+NVIDIA GPU
+CUDA Toolkit / NVCC
+Google Colab
+OpenCV
+C/C++ compiler
+Sample input images
+Python/Matplotlib for performance graphs
 
